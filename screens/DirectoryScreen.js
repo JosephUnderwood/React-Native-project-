@@ -14,9 +14,14 @@ const DirectoryScreen = (props) => {
     // Avatar componenet for displaying the campsite image data, we do this by passing it a prop of source = campsite.image. 
     // Then we can use the rounded prop to make the image appear as a circle 
     // ListItem.content - defines our main content displayed in the list
+
+    // onpress - we want to call our custom callback function that we are passing through props called onpress everytime one of the list items gets clicked on
+    //  we can do this by using the built-in on press prop for the Listitem componenet
+    // ListItem has a prop defined as onPress already so has to be called that, however like our custom callback function the list items press prop also gets passed a function that gets called whenever it receives an onpress event from the user  
+
     const renderDirectoryItem = ({ item: campsite }) => {
         return (
-            <ListItem>
+            <ListItem onPress={() => props.onPress(campsite.id)}>
                 <Avatar source={campsite.image} rounded />
                 <ListItem.Content>
                     <ListItem.Title>{campsite.name}</ListItem.Title>
