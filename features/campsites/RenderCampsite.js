@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
+import { baseUrl } from '../../shared/baseUrl';
 
 // Set up a function component named RenderCampsite, instead of passing this function the props parameter,  destructure the campsite property that we are passing in from the campsite info screen
 // the render campsite componenet is going to use what is called conditional rendering, which means it will use a condition to decide what it will render
@@ -12,7 +13,7 @@ const RenderCampsite = (props) => {
     if (campsite) {
         return (
             <Card containerStyle={StyleSheet.cardContainer}>
-                <Card.Image source={campsite.image}>
+                <Card.Image source={{ uri: baseUrl + campsite.image }}>
                     <View style={{ justifyContent: 'center', flex: 1 }}>
                         <Text
                             style={{
