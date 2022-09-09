@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { Card, Icon } from 'react-native-elements';
 import { baseUrl } from '../../shared/baseUrl';
+import * as Animatable from 'react-native-animatable'
 
 // Set up a function component named RenderCampsite, instead of passing this function the props parameter,  destructure the campsite property that we are passing in from the campsite info screen
 // the render campsite componenet is going to use what is called conditional rendering, which means it will use a condition to decide what it will render
@@ -13,37 +14,43 @@ const RenderCampsite = (props) => {
     const { campsite } = props;
     if (campsite) {
         return (
-            <Card containerStyle={StyleSheet.cardContainer}>
-                <Card.Image source={{ uri: baseUrl + campsite.image }}>
-                    <View style={{ justifyContent: 'center', flex: 1 }}>
-                        <Text style={styles.cardText}>
-                            {campsite.name}
-                        </Text>
+            <Animatable.View
+                animation='fadeInDownBig'
+                duration={2000}
+                delay={1000}
+            >
+                <Card containerStyle={StyleSheet.cardContainer}>
+                    <Card.Image source={{ uri: baseUrl + campsite.image }}>
+                        <View style={{ justifyContent: 'center', flex: 1 }}>
+                            <Text style={styles.cardText}>
+                                {campsite.name}
+                            </Text>
+                        </View>
+                    </Card.Image>
+                    <Text style={{ margin: 20 }}>{campsite.description}</Text>
+                    <View style={styles.cardRow}>
+                        <Icon
+                            name={props.isFavorite ? 'heart' : 'heart-o'}
+                            type='font-awesome'
+                            color='#f50'
+                            raised
+                            reverse
+                            onPress={() =>
+                                props.isFavorite
+                                    ? console.log('Already set as a favorite')
+                                    : props.markFavorite()}
+                        />
+                        <Icon
+                            name='pencil'
+                            type='font-awesome'
+                            color='#5637DD'
+                            raised
+                            reverse
+                            onPress={() => props.onShowModal()}
+                        />
                     </View>
-                </Card.Image>
-                <Text style={{ margin: 20 }}>{campsite.description}</Text>
-                <View style={styles.cardRow}>
-                    <Icon
-                        name={props.isFavorite ? 'heart' : 'heart-o'}
-                        type='font-awesome'
-                        color='#f50'
-                        raised
-                        reverse
-                        onPress={() =>
-                            props.isFavorite
-                                ? console.log('Already set as a favorite')
-                                : props.markFavorite()}
-                    />
-                    <Icon
-                        name='pencil'
-                        type='font-awesome'
-                        color='#5637DD'
-                        raised
-                        reverse
-                        onPress={() => props.onShowModal()}
-                    />
-                </View>
-            </Card>
+                </Card>
+            </Animatable.View>
         );
     }
     // if returns false we just want to return an empty view, important to always return something from the componenet, if it returns nothing it will cause an error
