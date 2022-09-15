@@ -1,6 +1,6 @@
 import { ScrollView, Text } from 'react-native';
 import { Card } from 'react-native-elements';
-import * as Animatable from 'react-native-animatable'
+import * as Animatable from 'react-native-animatable';
 
 const ContactScreen = () => {
     return (
@@ -11,7 +11,7 @@ const ContactScreen = () => {
                 delay={1000}
             >
                 <Card wrapperStyle={{ margin: 20 }}>
-                    <Card.Title>"Contact Information"</Card.Title>
+                    <Card.Title>Contact Information</Card.Title>
                     <Card.Divider />
                     <Text>1 Nucamp Way</Text>
                     <Text>Seattle, WA 98001</Text>
@@ -21,11 +21,7 @@ const ContactScreen = () => {
                 </Card>
             </Animatable.View>
         </ScrollView>
-
     );
 };
-
-
-
 
 export default ContactScreen;

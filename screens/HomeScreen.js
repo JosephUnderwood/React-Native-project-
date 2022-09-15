@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
-import { Animated, Text, View } from 'react-native';
+import { Text, View, Animated } from 'react-native';
 import { Card } from 'react-native-elements';
 import { useSelector } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
-import Loading from '../components/LoadingComponent'
+import Loading from '../components/LoadingComponent';
 
 const FeaturedItem = (props) => {
     const { item } = props;
@@ -48,9 +48,10 @@ const HomeScreen = () => {
     const scaleValue = useRef(new Animated.Value(0)).current;
     const scaleAnimation = Animated.timing(scaleValue, {
         toValue: 1,
-        duration: 100,
+        duration: 1500,
         useNativeDriver: true
-    })
+    });
+
     const featCampsite = campsites.campsitesArray.find((item) => item.featured);
     const featPromotion = promotions.promotionsArray.find(
         (item) => item.featured
@@ -82,4 +83,4 @@ const HomeScreen = () => {
     );
 };
 
-export default HomeScreen; 
+export default HomeScreen;

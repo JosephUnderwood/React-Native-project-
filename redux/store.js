@@ -22,7 +22,6 @@ const config = {
     debug: true
 };
 
-
 export const store = configureStore({
     reducer: persistCombineReducers(config, {
         campsites: campsitesReducer,
